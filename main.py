@@ -1,3 +1,5 @@
+import datetime
+
 from flask import Flask
 from flask import render_template, redirect
 from data import db_session
@@ -45,52 +47,15 @@ def reqister():
 def main():
     db_session.global_init("db/blogs.db")
 
-    user = User()
-    user.surname = "Scott"
-    user.name = "Ridley"
-    user.age = 21
-    user.position = "captain"
-    user.speciality = "research engineer"
-    user.address = "module_1"
-    user.email = "scott_chief@mars.org"
+    jobs = Jobs()
+    jobs.team_leader = 1
+    jobs.job = "deployment of residential modules 1 and 2"
+    jobs.work_size = 15
+    jobs.collaborators = "2, 3"
+    jobs.start_date = datetime.datetime.now().date()
+    jobs.is_finished = False
     db_sess = db_session.create_session()
-    db_sess.add(user)
-    db_sess.commit()
-
-    user = User()
-    user.surname = "Bob"
-    user.name = "Bidly"
-    user.age = 20
-    user.position = "worker"
-    user.speciality = "engineer"
-    user.address = "module_1"
-    user.email = "bob_bidly@mars.org"
-    db_sess = db_session.create_session()
-    db_sess.add(user)
-    db_sess.commit()
-
-    user = User()
-    user.surname = "Ben"
-    user.name = "Bitly"
-    user.age = 20
-    user.position = "worker"
-    user.speciality = "engineer"
-    user.address = "module_1"
-    user.email = "ben_bitly@mars.org"
-    db_sess = db_session.create_session()
-    db_sess.add(user)
-    db_sess.commit()
-
-    user = User()
-    user.surname = "Mark"
-    user.name = "Shetly"
-    user.age = 19
-    user.position = "worker"
-    user.speciality = "engineer"
-    user.address = "module_1"
-    user.email = "mark_shetly@mars.org"
-    db_sess = db_session.create_session()
-    db_sess.add(user)
+    db_sess.add(jobs)
     db_sess.commit()
 
     app.run()

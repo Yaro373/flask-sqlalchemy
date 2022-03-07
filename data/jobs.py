@@ -8,9 +8,12 @@ class Jobs(SqlAlchemyBase):
 
     id = sqlalchemy.Column(sqlalchemy.Integer,
                            primary_key=True, autoincrement=True)
-    title = sqlalchemy.Column(sqlalchemy.String)
-    chief = sqlalchemy.Column(sqlalchemy.Integer)
-    members = sqlalchemy.Column(sqlalchemy.String)
-    email = sqlalchemy.Column(sqlalchemy.String)
+    team_leader = sqlalchemy.Column(sqlalchemy.Integer, sqlalchemy.ForeignKey('users.id'))
+    job = sqlalchemy.Column(sqlalchemy.String)
+    work_size = sqlalchemy.Column(sqlalchemy.Integer)
+    collaborators = sqlalchemy.Column(sqlalchemy.String)
+    start_date = sqlalchemy.Column(sqlalchemy.DateTime)
+    end_date = sqlalchemy.Column(sqlalchemy.DateTime)
+    is_finished = sqlalchemy.Column(sqlalchemy.Boolean)
     orm.relation('User')
 
